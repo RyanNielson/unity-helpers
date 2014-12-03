@@ -41,7 +41,7 @@ public class PixelCameraEditor : Editor
 
     private void CreateRenderTexture()
     {
-        pixelCamera.viewRenderTexture = new RenderTexture (pixelCamera.widthInPixels, pixelCamera.heightInPixels, 24);
+        pixelCamera.viewRenderTexture = new RenderTexture(pixelCamera.widthInPixels, pixelCamera.heightInPixels, 24);
         pixelCamera.viewRenderTexture.name = "ViewRenderTexture";
         pixelCamera.viewRenderTexture.filterMode = FilterMode.Point;
         pixelCamera.camera.targetTexture = pixelCamera.viewRenderTexture;
@@ -49,7 +49,7 @@ public class PixelCameraEditor : Editor
 
     private void CreateViewCamera()
     {
-        Camera viewCamera = (new GameObject ("ViewCamera", typeof(Camera))).GetComponent<Camera>();
+        Camera viewCamera = (new GameObject("ViewCamera", typeof(Camera))).GetComponent<Camera>();
 
         viewCamera.transform.position = new Vector3 (10000, 10000, 10000);
         viewCamera.name = "ViewCamera";
@@ -64,7 +64,7 @@ public class PixelCameraEditor : Editor
     private void CreateViewPlane()
     {
         GameObject viewQuad = GameObject.CreatePrimitive(PrimitiveType.Quad);
-        Material material = new Material (Shader.Find("Unlit/Texture"));
+        Material material = new Material(Shader.Find("Unlit/Texture"));
 
         viewQuad.AddComponent<Letterboxer>();
         DestroyImmediate(viewQuad.GetComponent<MeshCollider>());
@@ -72,7 +72,7 @@ public class PixelCameraEditor : Editor
         viewQuad.name = "ViewQuad";
         viewQuad.transform.parent = pixelCamera.viewCamera.transform;
         viewQuad.transform.localPosition = Vector3.forward;
-        viewQuad.transform.localScale = new Vector3 (pixelCamera.aspect, 1f, 1f);
+        viewQuad.transform.localScale = new Vector3(pixelCamera.aspect, 1f, 1f);
 
         material.mainTexture = pixelCamera.viewRenderTexture;
         viewQuad.renderer.material = material;
